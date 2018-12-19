@@ -1,8 +1,8 @@
 (*
 	@program quine algorithm
 	@auther Moumen_x0x <a.lahmidi@univ-boumerdes.dz>
-	@total hours wasted here 4H 
-	@version 1.65
+	@total hours  4H 
+	@version 1
 
 *)
 
@@ -22,11 +22,11 @@ let rec cnf ter = match ter with
   |NEG OU (x,y) -> cnf (ET(x,y)) 
   |NEG ET (x,y) -> cnf (OU(x,y)) 
   |OU(ET(x,y),z) -> cnf (ET(OU(z,x),OU(z,y)));
-    |OU(z,ET(x,y)) -> cnf (ET(OU(z,x),OU(z,y)));
-    |OU(NEG IMPLIQ (x,y),z) ->cnf(ET(OU(z,x),OU(z,NEG y)));
-    |OU(z,NEG IMPLIQ (x,y)) ->cnf(ET(OU(z,x),OU(z,NEG y)));
-    |OU(NEG OU(x,y),z) -> cnf(ET(OU(z,NEG x),OU(z,NEG y)));
-    |OU(z,NEG OU(x,y)) -> cnf(ET(OU(z,NEG x),OU(z,NEG y)));             
+  |OU(z,ET(x,y)) -> cnf (ET(OU(z,x),OU(z,y)));
+  |OU(NEG IMPLIQ (x,y),z) ->cnf(ET(OU(z,x),OU(z,NEG y)));
+  |OU(z,NEG IMPLIQ (x,y)) ->cnf(ET(OU(z,x),OU(z,NEG y)));
+  |OU(NEG OU(x,y),z) -> cnf(ET(OU(z,NEG x),OU(z,NEG y)));
+  |OU(z,NEG OU(x,y)) -> cnf(ET(OU(z,NEG x),OU(z,NEG y)));             
   |OU(x, y) ->   OU(cnf x,cnf y)
   |ET(x,y)      ->  ET(cnf x,cnf y)
   |IMPLIQ(x,y) -> cnf (OU(NEG x,y))
